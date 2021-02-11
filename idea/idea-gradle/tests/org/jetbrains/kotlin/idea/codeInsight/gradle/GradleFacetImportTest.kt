@@ -58,21 +58,21 @@ import org.jetbrains.plugins.gradle.tooling.annotation.TargetVersions
 import org.junit.Assert
 import org.junit.Test
 
-internal fun GradleImportingTestCase.facetSettings(moduleName: String) = KotlinFacet.get(getModule(moduleName))!!.configuration.settings
+internal fun MultiplePluginVersionGradleImportingTestCase.facetSettings(moduleName: String) = KotlinFacet.get(getModule(moduleName))!!.configuration.settings
 
-internal val GradleImportingTestCase.facetSettings: KotlinFacetSettings
+internal val MultiplePluginVersionGradleImportingTestCase.facetSettings: KotlinFacetSettings
     get() = facetSettings("project_main")
 
-internal val GradleImportingTestCase.testFacetSettings: KotlinFacetSettings
+internal val MultiplePluginVersionGradleImportingTestCase.testFacetSettings: KotlinFacetSettings
     get() = facetSettings("project_test")
 
-internal fun GradleImportingTestCase.getSourceRootInfos(moduleName: String): List<Pair<String, JpsModuleSourceRootType<*>>> {
+internal fun MultiplePluginVersionGradleImportingTestCase.getSourceRootInfos(moduleName: String): List<Pair<String, JpsModuleSourceRootType<*>>> {
     return ModuleRootManager.getInstance(getModule(moduleName)).contentEntries.flatMap {
         it.sourceFolders.map { it.url.replace(projectPath, "") to it.rootType }
     }
 }
 
-class GradleFacetImportTest : GradleImportingTestCase() {
+class GradleFacetImportTest : MultiplePluginVersionGradleImportingTestCase() {
 
     private fun assertSameKotlinSdks(vararg moduleNames: String) {
         val sdks = moduleNames.map { getModule(it).sdk!! }
