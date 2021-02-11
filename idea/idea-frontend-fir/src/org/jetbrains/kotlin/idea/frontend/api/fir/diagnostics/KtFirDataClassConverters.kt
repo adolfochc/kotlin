@@ -259,8 +259,8 @@ internal val KT_DIAGNOSTIC_CONVERTER = KtDiagnosticConverterBuilder.buildConvert
             token,
         )
     }
-    add(FirErrors.NON_PRIVATE_CONSTRUCTOR_IN_SEALED) { firDiagnostic ->
-        NonPrivateConstructorInSealedImpl(
+    add(FirErrors.NON_PRIVATE_OR_PROTECTED_CONSTRUCTOR_IN_SEALED) { firDiagnostic ->
+        NonPrivateOrProtectedConstructorInSealedImpl(
             firDiagnostic as FirPsiDiagnostic<*>,
             token,
         )
@@ -844,6 +844,24 @@ internal val KT_DIAGNOSTIC_CONVERTER = KtDiagnosticConverterBuilder.buildConvert
     }
     add(FirErrors.PROPERTY_WITH_NO_TYPE_NO_INITIALIZER) { firDiagnostic ->
         PropertyWithNoTypeNoInitializerImpl(
+            firDiagnostic as FirPsiDiagnostic<*>,
+            token,
+        )
+    }
+    add(FirErrors.BACKING_FIELD_IN_INTERFACE) { firDiagnostic ->
+        BackingFieldInInterfaceImpl(
+            firDiagnostic as FirPsiDiagnostic<*>,
+            token,
+        )
+    }
+    add(FirErrors.EXTENSION_PROPERTY_WITH_BACKING_FIELD) { firDiagnostic ->
+        ExtensionPropertyWithBackingFieldImpl(
+            firDiagnostic as FirPsiDiagnostic<*>,
+            token,
+        )
+    }
+    add(FirErrors.PROPERTY_INITIALIZER_NO_BACKING_FIELD) { firDiagnostic ->
+        PropertyInitializerNoBackingFieldImpl(
             firDiagnostic as FirPsiDiagnostic<*>,
             token,
         )

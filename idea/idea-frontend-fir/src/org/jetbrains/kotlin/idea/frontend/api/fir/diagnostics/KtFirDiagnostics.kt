@@ -189,8 +189,8 @@ sealed class KtFirDiagnostic<PSI: PsiElement> : KtDiagnosticWithPsi<PSI> {
         override val diagnosticClass get() = NonPrivateConstructorInEnum::class
     }
 
-    abstract class NonPrivateConstructorInSealed : KtFirDiagnostic<PsiElement>() {
-        override val diagnosticClass get() = NonPrivateConstructorInSealed::class
+    abstract class NonPrivateOrProtectedConstructorInSealed : KtFirDiagnostic<PsiElement>() {
+        override val diagnosticClass get() = NonPrivateOrProtectedConstructorInSealed::class
     }
 
     abstract class CyclicConstructorDelegationCall : KtFirDiagnostic<PsiElement>() {
@@ -600,6 +600,18 @@ sealed class KtFirDiagnostic<PSI: PsiElement> : KtDiagnosticWithPsi<PSI> {
 
     abstract class PropertyWithNoTypeNoInitializer : KtFirDiagnostic<KtProperty>() {
         override val diagnosticClass get() = PropertyWithNoTypeNoInitializer::class
+    }
+
+    abstract class BackingFieldInInterface : KtFirDiagnostic<KtProperty>() {
+        override val diagnosticClass get() = BackingFieldInInterface::class
+    }
+
+    abstract class ExtensionPropertyWithBackingField : KtFirDiagnostic<KtExpression>() {
+        override val diagnosticClass get() = ExtensionPropertyWithBackingField::class
+    }
+
+    abstract class PropertyInitializerNoBackingField : KtFirDiagnostic<KtExpression>() {
+        override val diagnosticClass get() = PropertyInitializerNoBackingField::class
     }
 
     abstract class AbstractDelegatedProperty : KtFirDiagnostic<KtPropertyDelegate>() {
